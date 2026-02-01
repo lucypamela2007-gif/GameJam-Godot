@@ -1,15 +1,32 @@
 [gd_scene format=3 uid="uid://c2hragdha3bj5"]
 
-[ext_resource type="Script" uid="uid://qpj44o6bo2bs" path="res://scripts/mask.gd" id="1_nr6xi"]
+[ext_resource type="Texture2D" uid="uid://umcy8k8mow03" path="res://assets/Untitled 01-31-2026 05-45-42 (2).png" id="1_daowh"]
+
+[sub_resource type="GDScript" id="GDScript_nr6xi"]
+script/source = "extends Area2D
+class_name mask
+var masked_picked_up = false
+
+
+func _on_body_entered(body):
+	masked_picked_up = true
+	queue_free()
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nr6xi"]
+radius = 7.28011
 
 [node name="Mask" type="Area2D" unique_id=540391638]
 collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1700499556]
+script = SubResource("GDScript_nr6xi")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=415634636]
-script = ExtResource("1_nr6xi")
+texture = ExtResource("1_daowh")
+region_enabled = true
+region_rect = Rect2(78, -1, 19, 17)
 
-[node name="Pickup Sound" type="AudioStreamPlayer2D" parent="." unique_id=1295768520]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1700499556]
+shape = SubResource("CircleShape2D_nr6xi")
 
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_entered" from="." to="Sprite2D" method="_on_mask_body_entered"]

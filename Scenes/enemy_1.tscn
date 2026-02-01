@@ -1,17 +1,30 @@
 [gd_scene format=3 uid="uid://bjh4uxfuvwg5m"]
 
-[ext_resource type="Script" uid="uid://b1ejbd1vvj57s" path="res://Scenes/enemy_1.gd" id="1_0a874"]
+[ext_resource type="Script" uid="uid://b1ejbd1vvj57s" path="res://Scripts/enemy_1.gd" id="1_0a874"]
 [ext_resource type="PackedScene" uid="uid://ctg15cjobu62u" path="res://Scenes/killzone.tscn" id="1_jwqgc"]
+[ext_resource type="Texture2D" uid="uid://b4c11gkm4j0tb" path="res://assets/duck Sprite.png" id="2_lssre"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wlnc2"]
+radius = 5.8309517
 
 [node name="Enemy1" type="Node2D" unique_id=303741334]
 script = ExtResource("1_0a874")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1608611920]
-
-[node name="killzone" parent="." unique_id=947948114 instance=ExtResource("1_jwqgc")]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="killzone" unique_id=433758796]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_lssre")
 
 [node name="RayCast Right" type="RayCast2D" parent="." unique_id=59537332]
+target_position = Vector2(20, 0)
 
 [node name="RayCast Left" type="RayCast2D" parent="." unique_id=417488169]
+position = Vector2(4, 1)
+target_position = Vector2(-24, -1)
+
+[node name="killzone" parent="." unique_id=947948114 instance=ExtResource("1_jwqgc")]
+collision_layer = 1
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="killzone" unique_id=433758796]
+position = Vector2(2, 1)
+shape = SubResource("CircleShape2D_wlnc2")
