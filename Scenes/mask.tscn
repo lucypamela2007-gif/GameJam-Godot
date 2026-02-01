@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://c2hragdha3bj5"]
+
+[ext_resource type="Script" uid="uid://qpj44o6bo2bs" path="res://scripts/mask.gd" id="1_nr6xi"]
+
+[node name="Mask" type="Area2D" unique_id=540391638]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1700499556]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=415634636]
+script = ExtResource("1_nr6xi")
+
+[node name="Pickup Sound" type="AudioStreamPlayer2D" parent="." unique_id=1295768520]
+
+[connection signal="body_entered" from="." to="Sprite2D" method="_on_mask_body_entered"]
